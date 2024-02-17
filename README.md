@@ -2,9 +2,9 @@
 
 **RDBMS** is a client-level Relational Database access API that seamlessly integrates with [Routes](https://github.com/MoodMinds/routes)
 for data manipulation. It enriches its API with RDBMS-specific commands designed for SQL statement execution, expressions,
-and traversals. Similar to Routes, RDBMS is an execution model-agnostic API/SPI. This means that depending on the chosen
-execution model, SPI implementations have the flexibility to select a Database Connectivity system, such as JDBC,
-[R2DBC](https://r2dbc.io), or any other suitable option that may be available.
+and traversals. Similar to [Routes](https://github.com/MoodMinds/routes), RDBMS is an execution model-agnostic API/SPI.
+This means that depending on the chosen execution model, SPI implementations have the flexibility to select a Database Connectivity system,
+such as JDBC, [R2DBC](https://r2dbc.io), or any other suitable option that may be available.
 
 ## The Concept
 
