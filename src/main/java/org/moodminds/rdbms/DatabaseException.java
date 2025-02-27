@@ -117,7 +117,7 @@ public class DatabaseException extends RdbmsException implements Signal {
     }
 
     /**
-     * Returns the detail message string of this exception.
+     * Return the detail message string of this exception.
      *
      * @return  the detail message string of this exception
      */

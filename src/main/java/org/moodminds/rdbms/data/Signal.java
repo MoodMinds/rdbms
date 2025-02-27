@@ -24,7 +24,7 @@ public interface Signal {
     String getState();
 
     /**
-     * Returns the detail message string.
+     * Return the detail message string.
      *
      * @return  the detail message string
      */
