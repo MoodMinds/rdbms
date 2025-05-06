@@ -12690,10 +12690,9 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
     }
 
     /**
-     * RDBMS execution definition object that defines emission of the created rows generated keys {@link Relation}.
+     * RDBMS execution definition object that defines emission of the created rows' generated keys {@link Tuple}.
      */
-    interface Creating extends Fetching<Creating>, Emitting<Relation<?>> {
-
+    interface Creating extends Batching<Creating>, Fetching<Creating>, Emitting<Tuple> {
 
         /**
          * Continue route definition in the given handler of the created
@@ -12725,7 +12724,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V> Emitting<Relation<Tuple1<V>>> relate1();
+        <V> Emitting<Tuple1<V>> relate1();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -12852,7 +12851,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2> Emitting<Relation<Tuple2<V1, V2>>> relate2();
+        <V1, V2> Emitting<Tuple2<V1, V2>> relate2();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -12993,7 +12992,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3> Emitting<Relation<Tuple3<V1, V2, V3>>> relate3();
+        <V1, V2, V3> Emitting<Tuple3<V1, V2, V3>> relate3();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -13150,7 +13149,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4> Emitting<Relation<Tuple4<V1, V2, V3, V4>>> relate4();
+        <V1, V2, V3, V4> Emitting<Tuple4<V1, V2, V3, V4>> relate4();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -13323,7 +13322,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5> Emitting<Relation<Tuple5<V1, V2, V3, V4, V5>>> relate5();
+        <V1, V2, V3, V4, V5> Emitting<Tuple5<V1, V2, V3, V4, V5>> relate5();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -13512,7 +13511,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5, V6> Emitting<Relation<Tuple6<V1, V2, V3, V4, V5, V6>>> relate6();
+        <V1, V2, V3, V4, V5, V6> Emitting<Tuple6<V1, V2, V3, V4, V5, V6>> relate6();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -13717,7 +13716,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5, V6, V7> Emitting<Relation<Tuple7<V1, V2, V3, V4, V5, V6, V7>>> relate7();
+        <V1, V2, V3, V4, V5, V6, V7> Emitting<Tuple7<V1, V2, V3, V4, V5, V6, V7>> relate7();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -13938,7 +13937,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting relation result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5, V6, V7, V8> Emitting<Relation<Tuple8<V1, V2, V3, V4, V5, V6, V7, V8>>> relate8();
+        <V1, V2, V3, V4, V5, V6, V7, V8> Emitting<Tuple8<V1, V2, V3, V4, V5, V6, V7, V8>> relate8();
 
         /**
          * Complete route definition as such that emits created rows'
@@ -14161,13 +14160,13 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
     }
 
     /**
-     * RDBMS execution definition object that defines emission of the queried {@link Relation}.
+     * RDBMS execution definition object that defines emission of the queried {@link Tuple}s.
      *
      * @param <X> the type of the relation tuple
      * @param <R> the type of the relation
      */
     interface Relating<X extends Tuple, R extends Relation<? extends X>>
-            extends Fetching<Relating<X, R>>, Emitting<R> {
+            extends Fetching<Relating<X, R>>, Emitting<X> {
 
         /**
          * Continue route definition in the given handler of the result relation.
@@ -14192,9 +14191,9 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
 
     /**
      * RDBMS stored procedure invocation definition object that defines
-     * emission of all procedure results - parameters output, relations, scalars.
+     * emission of procedure parameters output.
      */
-    interface Invoking extends Fetching<Invoking>, Emitting<Object> {
+    interface Invoking extends Fetching<Invoking>, Emitting<Output> {
 
 
         /**
@@ -14318,7 +14317,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V> Emitting<Relation<Tuple1<V>>> relate1(int result);
+        <V> Emitting<Tuple1<V>> relate1(int result);
 
         /**
          * Complete route definition as such that emits 1-column relation
@@ -14371,7 +14370,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2> Emitting<Relation<Tuple2<V1, V2>>> relate2(int result);
+        <V1, V2> Emitting<Tuple2<V1, V2>> relate2(int result);
 
         /**
          * Complete route definition as such that emits 2-columns relation
@@ -14428,7 +14427,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3> Emitting<Relation<Tuple3<V1, V2, V3>>> relate3(int result);
+        <V1, V2, V3> Emitting<Tuple3<V1, V2, V3>> relate3(int result);
 
         /**
          * Complete route definition as such that emits 3-columns relation
@@ -14489,7 +14488,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4> Emitting<Relation<Tuple4<V1, V2, V3, V4>>> relate4(int result);
+        <V1, V2, V3, V4> Emitting<Tuple4<V1, V2, V3, V4>> relate4(int result);
 
         /**
          * Complete route definition as such that emits 4-columns relation
@@ -14554,7 +14553,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5> Emitting<Relation<Tuple5<V1, V2, V3, V4, V5>>> relate5(int result);
+        <V1, V2, V3, V4, V5> Emitting<Tuple5<V1, V2, V3, V4, V5>> relate5(int result);
 
         /**
          * Complete route definition as such that emits 5-columns relation
@@ -14623,7 +14622,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5, V6> Emitting<Relation<Tuple6<V1, V2, V3, V4, V5, V6>>> relate6(int result);
+        <V1, V2, V3, V4, V5, V6> Emitting<Tuple6<V1, V2, V3, V4, V5, V6>> relate6(int result);
 
         /**
          * Complete route definition as such that emits 6-columns relation
@@ -14696,7 +14695,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5, V6, V7> Emitting<Relation<Tuple7<V1, V2, V3, V4, V5, V6, V7>>> relate7(int result);
+        <V1, V2, V3, V4, V5, V6, V7> Emitting<Tuple7<V1, V2, V3, V4, V5, V6, V7>> relate7(int result);
 
         /**
          * Complete route definition as such that emits 7-columns relation
@@ -14773,7 +14772,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return emitting result definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <V1, V2, V3, V4, V5, V6, V7, V8> Emitting<Relation<Tuple8<V1, V2, V3, V4, V5, V6, V7, V8>>> relate8(int result);
+        <V1, V2, V3, V4, V5, V6, V7, V8> Emitting<Tuple8<V1, V2, V3, V4, V5, V6, V7, V8>> relate8(int result);
 
         /**
          * Complete route definition as such that emits 8-columns relation
