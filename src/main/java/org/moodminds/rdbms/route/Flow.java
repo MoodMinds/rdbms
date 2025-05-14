@@ -11099,65 +11099,72 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
         /**
          * {@inheritDoc}
          *
+         * @param type {@inheritDoc}
          * @param route {@inheritDoc}
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Block1<? super H, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Block1<? super H, ? extends Routing<? extends $R>> route);
 
         /**
          * {@inheritDoc}
          *
+         * @param type {@inheritDoc}
          * @param route {@inheritDoc}
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(org.moodminds.route.Route1Level1<? super H, ? extends E, ? extends $R> route);
+        $AE caught(Class<H> type, org.moodminds.route.Route1Level1<? super H, ? extends E, ? extends $R> route);
 
         /**
          * {@inheritDoc}
          *
+         * @param type {@inheritDoc}
          * @param route {@inheritDoc}
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(org.moodminds.route.Route1Level2<? super H, ? extends RuntimeException, ? extends $R> route);
+        $AE caught(Class<H> type, org.moodminds.route.Route1Level2<? super H, ? extends RuntimeException, ? extends $R> route);
 
         /**
          * {@inheritDoc}
          *
+         * @param type {@inheritDoc}
          * @param route {@inheritDoc}
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(org.moodminds.route.Route1Level3<? super H, E, ? extends $R> route);
+        $AE caught(Class<H> type, org.moodminds.route.Route1Level3<? super H, E, ? extends $R> route);
 
         /**
-         * Define the specified handling route for caught exception.
+         * Define the specified handling route for exceptions of the specified type.
          *
+         * @param type  the specified exception type
          * @param route the specified exception handling route
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $AE caught(Route1Level1<? super H, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Route1Level1<? super H, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
 
         /**
-         * Define the specified handling route for caught exception.
+         * Define the specified handling route for exceptions of the specified type.
          *
+         * @param type  the specified exception type
          * @param route the specified exception handling route
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $AE caught(Route1Level2<? super H, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Route1Level2<? super H, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
 
         /**
-         * Define the specified handling route for caught exception.
+         * Define the specified handling route for exceptions of the specified type.
          *
+         * @param type  the specified exception type
          * @param route the specified exception handling route
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $AE caught(Route1Level3<? super H, E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Route1Level3<? super H, E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
     }
 
     /**
