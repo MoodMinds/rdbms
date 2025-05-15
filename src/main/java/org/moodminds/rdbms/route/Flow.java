@@ -10966,7 +10966,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Class<? extends Throwable> type, Block<? extends Routing<? extends $R>> route);
+        $AE caught(Class<? extends Exception> type, Block<? extends Routing<? extends $R>> route);
 
         /**
          * {@inheritDoc}
@@ -10977,7 +10977,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, Block1<? super C, ? extends Routing<? extends $R>> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, Block1<? super C, ? extends Routing<? extends $R>> route);
 
         /**
          * {@inheritDoc}
@@ -10988,7 +10988,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level1<? super C, ? extends E, ? extends $R> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level1<? super C, ? extends E, ? extends $R> route);
 
         /**
          * {@inheritDoc}
@@ -10999,7 +10999,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level2<? super C, ? extends RuntimeException, ? extends $R> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level2<? super C, ? extends RuntimeException, ? extends $R> route);
 
         /**
          * {@inheritDoc}
@@ -11010,7 +11010,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level3<? super C, E, ? extends $R> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level3<? super C, E, ? extends $R> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11021,7 +11021,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level1<? super C, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, Route1Level1<? super C, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11032,7 +11032,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level2<? super C, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, Route1Level2<? super C, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11043,7 +11043,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level3<? super C, E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <C extends Exception> $AE caught(Class<? extends C> type, Route1Level3<? super C, E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
     }
 
     /**
