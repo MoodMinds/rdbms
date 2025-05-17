@@ -2491,7 +2491,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V> ExpectingStream<$S, $T, V, E> reduce(Block<? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(Block<? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * {@inheritDoc}
@@ -2502,7 +2502,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V> ExpectingStream<$S, $T, V, E> reduce(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * {@inheritDoc}
@@ -2513,7 +2513,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V> ExpectingStream<$S, $T, V, E> reduce(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * {@inheritDoc}
@@ -2524,7 +2524,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V> ExpectingStream<$S, $T, V, E> reduce(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * Complete route definition as such that emits the reduction operation result of the values
@@ -2536,7 +2536,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V> ExpectingStream<$S, $T, V, E> reduce(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * Continue route definition in the given handler of the reduction operation result of the values
@@ -2548,7 +2548,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V, $R extends Routing<?>> $R reduce(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R reduce(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the reduction operation result of the values
@@ -2560,7 +2560,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V> ExpectingStream<$S, $T, V, E> reduce(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * Continue route definition in the given handler of the reduction operation result of the values
@@ -2572,7 +2572,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V, $R extends Routing<?>> $R reduce(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R reduce(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the reduction operation result of the values
@@ -2584,7 +2584,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V> ExpectingStream<$S, $T, V, E> reduce(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator);
+    <V> ExpectingStream<$S, $T, V, E> reduce(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator);
 
     /**
      * Continue route definition in the given handler of the reduction operation result of the values
@@ -2596,7 +2596,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V, $R extends Routing<?>> $R reduce(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2<? super V, ? super V, ? extends V> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R reduce(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Evaluable2Throwing1<? super V, ? super V, ? extends V, ? extends E> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * {@inheritDoc}
@@ -2609,7 +2609,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, Block<? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, Block<? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * {@inheritDoc}
@@ -2622,7 +2622,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * {@inheritDoc}
@@ -2635,7 +2635,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * {@inheritDoc}
@@ -2648,7 +2648,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * Complete route definition as such that emits the reduction operation result of the values
@@ -2662,7 +2662,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * Continue route definition in the given handler of the reduction operation result of the values
@@ -2675,7 +2675,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <O, V, $R extends Routing<?>> $R reduce(V initial, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <O, V, $R extends Routing<?>> $R reduce(V initial, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the reduction operation result of the values
@@ -2689,7 +2689,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * Continue route definition in the given handler of the reduction operation result of the values
@@ -2702,7 +2702,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <O, V, $R extends Routing<?>> $R reduce(V initial, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <O, V, $R extends Routing<?>> $R reduce(V initial, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the reduction operation result of the values
@@ -2716,7 +2716,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator);
+    <O, V> ExpectingStream<$S, $T, V, E> reduce(V initial, RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator);
 
     /**
      * Continue route definition in the given handler of the reduction operation result of the values
@@ -2729,7 +2729,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <O, V, $R extends Routing<?>> $R reduce(V initial, RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2<? super V, ? super O, ? extends V> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <O, V, $R extends Routing<?>> $R reduce(V initial, RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends O>> stream, Evaluable2Throwing1<? super V, ? super O, ? extends V, ? extends E> accumulator, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * {@inheritDoc}
