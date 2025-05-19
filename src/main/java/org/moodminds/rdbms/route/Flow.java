@@ -437,7 +437,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @throws RuntimeException {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(Block<? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(Block<? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -448,7 +448,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @throws RuntimeException {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -459,7 +459,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @throws RuntimeException {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -470,7 +470,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @throws RuntimeException {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream);
 
     /**
      * Complete route definition as such that sorts and emits {@link Comparable} values
@@ -481,7 +481,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of sorted {@link Comparable} values
@@ -492,7 +492,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R sort(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R sort(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that sorts and emits {@link Comparable} values
@@ -503,7 +503,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of sorted {@link Comparable} values
@@ -514,7 +514,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R sort(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R sort(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that sorts and emits {@link Comparable} values
@@ -525,7 +525,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> sort(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> sort(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of sorted {@link Comparable} values
@@ -536,7 +536,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R sort(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R sort(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * {@inheritDoc}
@@ -2044,7 +2044,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(Block<? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(Block<? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -2054,7 +2054,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -2064,7 +2064,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -2074,7 +2074,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream);
 
     /**
      * Complete route definition as such that emits the minimum of the {@link Comparable} values
@@ -2085,7 +2085,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of the minimum of the {@link Comparable} values
@@ -2096,7 +2096,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R min(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R min(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the minimum of the {@link Comparable} values
@@ -2107,7 +2107,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of the minimum of the {@link Comparable} values
@@ -2118,7 +2118,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R min(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R min(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the minimum of the {@link Comparable} values
@@ -2129,7 +2129,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> min(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> min(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of the minimum of the {@link Comparable} values
@@ -2140,7 +2140,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R min(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R min(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
 
     /**
@@ -2267,7 +2267,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(Block<? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(Block<? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -2277,7 +2277,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(org.moodminds.route.RouteLevel1<? extends E, ? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -2287,7 +2287,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Emitting<? extends V>> stream);
 
     /**
      * {@inheritDoc}
@@ -2297,7 +2297,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return {@inheritDoc}
      */
     @Override
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(org.moodminds.route.RouteLevel3<E, ? extends Emitting<? extends V>> stream);
 
     /**
      * Complete route definition as such that emits the maximum of the {@link Comparable} values
@@ -2308,7 +2308,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of the maximum of the {@link Comparable} values
@@ -2319,7 +2319,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R max(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R max(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the maximum of the {@link Comparable} values
@@ -2330,7 +2330,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of the maximum of the {@link Comparable} values
@@ -2341,7 +2341,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R max(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R max(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * Complete route definition as such that emits the maximum of the {@link Comparable} values
@@ -2352,7 +2352,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return the emitting attempt definition object
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>> ExpectingStream<$S, $T, V, E> max(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
+    <V> ExpectingStream<$S, $T, V, E> max(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream);
 
     /**
      * Continue route definition in the given handler of the maximum of the {@link Comparable} values
@@ -2363,7 +2363,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @return handling route definition result
      * @throws RuntimeException an exception in case of route definition error
      */
-    <V extends Comparable<V>, $R extends Routing<?>> $R max(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
+    <V, $R extends Routing<?>> $R max(RouteLevel3<E, ? super $S, ? super $T, ? extends Emitting<? extends V>> stream, Block1<? super V, ? extends Routing<? extends $R>> handler);
 
     /**
      * {@inheritDoc}
