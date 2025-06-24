@@ -10988,7 +10988,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level1<? super C, ? extends E, ? extends $R> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level1<? super C, ? extends E, ? extends Routing<? extends $R>> route);
 
         /**
          * {@inheritDoc}
@@ -10999,7 +10999,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level2<? super C, ? extends RuntimeException, ? extends $R> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level2<? super C, ? extends RuntimeException, ? extends Routing<? extends $R>> route);
 
         /**
          * {@inheritDoc}
@@ -11010,7 +11010,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level3<? super C, E, ? extends $R> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level3<? super C, E, ? extends Routing<? extends $R>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11055,7 +11055,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible exception
      */
     interface ExpectingAction<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E extends Exception>
-            extends org.moodminds.route.Flow.ExpectingAction<$F, E>,
+                extends org.moodminds.route.Flow.ExpectingAction<$F, E>,
             Expecting<ExpectingAction<$F, $S, $T, E>, org.moodminds.route.Flow.ExpectingAction<$F, E>, $S, $T, Flowing<?>, E>, Flow<$F, $S, $T, E> {
     }
 
@@ -11068,7 +11068,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible exception that might be thrown
      */
     interface ExpectingStream<$S, $T extends Types, V, E extends Exception>
-            extends org.moodminds.route.Flow.ExpectingStream<V, E>,
+                extends org.moodminds.route.Flow.ExpectingStream<V, E>,
             Expecting<ExpectingStream<$S, $T, V, E>, org.moodminds.route.Flow.ExpectingStream<V, E>, $S, $T, Emitting<? extends V>, E>, Following<$S, $T, V, E> {
     }
 
@@ -11177,7 +11177,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible expected exception that might be thrown
      */
     interface CatchingAction<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, H extends Exception, E extends Exception>
-            extends org.moodminds.route.Flow.CatchingAction<$F, H, E>,
+                extends org.moodminds.route.Flow.CatchingAction<$F, H, E>,
             Catching<ExpectingAction<$F, $S, $T, E>, org.moodminds.route.Flow.ExpectingAction<$F, E>, $S, $T, Flowing<?>, H, E> {
     }
 
@@ -11191,7 +11191,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible expected exception that might be thrown
      */
     interface CatchingStream<$S, $T extends Types, V, H extends Exception, E extends Exception>
-            extends org.moodminds.route.Flow.CatchingStream<V, H, E>,
+                extends org.moodminds.route.Flow.CatchingStream<V, H, E>,
             Catching<ExpectingStream<$S, $T, V, E>, org.moodminds.route.Flow.ExpectingStream<V, E>, $S, $T, Emitting<? extends V>, H, E> {
     }
 
@@ -12523,7 +12523,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible exception
      */
     interface ChoosingAction<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E extends Exception>
-            extends org.moodminds.route.Flow.ChoosingAction<$F, E>, Choosing<ChoosingAction<$F, $S, $T, E>,
+                extends org.moodminds.route.Flow.ChoosingAction<$F, E>, Choosing<ChoosingAction<$F, $S, $T, E>,
             org.moodminds.route.Flow.ChoosingAction<$F, E>, $S, $T, Flow<$F, $S, $T, E>, org.moodminds.route.Flow<$F, E>, Flowing<?>, E>, Flow<$F, $S, $T, E> {
     }
 
@@ -12536,7 +12536,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible exception that might be thrown
      */
     interface ChoosingStream<$S, $T extends Types, V, E extends Exception>
-            extends org.moodminds.route.Flow.ChoosingStream<V, E>, Choosing<ChoosingStream<$S, $T, V, E>,
+                extends org.moodminds.route.Flow.ChoosingStream<V, E>, Choosing<ChoosingStream<$S, $T, V, E>,
             org.moodminds.route.Flow.ChoosingStream<V, E>, $S, $T, Emitting<V>, Emitting<V>, Emitting<? extends V>, E> {
     }
 
