@@ -12502,7 +12502,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      */
     interface ChoosingAction<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E extends Exception>
                 extends org.moodminds.route.Flow.ChoosingAction<$F, E>, Choosing<ChoosingAction<$F, $S, $T, E>,
-            org.moodminds.route.Flow.ChoosingAction<$F, E>, $S, $T, Flow<$F, $S, $T, E>, org.moodminds.route.Flow<$F, E>, Flowing<?>, E>, Flow<$F, $S, $T, E> {
+            org.moodminds.route.Flow.ChoosingAction<$F, E>, $S, $T, $F, $F, Flowing<?>, E>, Flow<$F, $S, $T, E> {
     }
 
     /**
