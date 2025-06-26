@@ -10934,10 +10934,11 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <$S>  the type of the statements definition interface
      * @param <$T>  the type of the RDBMS types' accessor interface
      * @param <$R>  the type of the route definition result
+     * @param <$E>  the type of the expected route definition result
      * @param <E>   the type of possible exception
      */
-    interface Expecting<$AE extends $A, $A extends org.moodminds.route.Flow.Expecting<$A, $R, E>, $S, $T extends Types, $R extends Routing<?>, E extends Exception>
-            extends org.moodminds.route.Flow.Expecting<$A, $R, E> {
+    interface Expecting<$AE extends $A, $A extends org.moodminds.route.Flow.Expecting<$A, $E, $R, E>, $S, $T extends Types, $E extends Routing<?>, $R extends Routing<?>, E extends Exception>
+            extends org.moodminds.route.Flow.Expecting<$A, $E, $R, E> {
 
         /**
          * {@inheritDoc}
@@ -10956,7 +10957,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Class<? extends Throwable> type, Block<? extends Routing<? extends $R>> route);
+        $AE caught(Class<? extends Throwable> type, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -10967,7 +10968,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, Block1<? super C, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, Block1<? super C, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -10978,7 +10979,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level1<? super C, ? extends E, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level1<? super C, ? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -10989,7 +10990,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level2<? super C, ? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level2<? super C, ? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11000,7 +11001,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level3<? super C, E, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, org.moodminds.route.Route1Level3<? super C, E, ? extends Routing<? extends $E>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11011,7 +11012,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level1<? super C, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level1<? super C, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11022,7 +11023,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level2<? super C, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level2<? super C, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11033,7 +11034,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level3<? super C, E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <C extends Throwable> $AE caught(Class<? extends C> type, Route1Level3<? super C, E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
     }
 
     /**
@@ -11046,7 +11047,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      */
     interface ExpectingAction<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E extends Exception>
                 extends org.moodminds.route.Flow.ExpectingAction<$F, E>,
-            Expecting<ExpectingAction<$F, $S, $T, E>, org.moodminds.route.Flow.ExpectingAction<$F, E>, $S, $T, Flowing<?>, E>, Flow<$F, $S, $T, E> {
+            Expecting<ExpectingAction<$F, $S, $T, E>, org.moodminds.route.Flow.ExpectingAction<$F, E>, $S, $T, Flowing<?>, $F, E>, Flow<$F, $S, $T, E> {
     }
 
     /**
@@ -11059,7 +11060,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      */
     interface ExpectingStream<$S, $T extends Types, V, E extends Exception>
                 extends org.moodminds.route.Flow.ExpectingStream<V, E>,
-            Expecting<ExpectingStream<$S, $T, V, E>, org.moodminds.route.Flow.ExpectingStream<V, E>, $S, $T, Emitting<? extends V>, E>, Following<$S, $T, V, E> {
+            Expecting<ExpectingStream<$S, $T, V, E>, org.moodminds.route.Flow.ExpectingStream<V, E>, $S, $T, Emitting<? extends V>, Emitting<V>, E>, Following<$S, $T, V, E> {
     }
 
 
@@ -11070,12 +11071,12 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <$A>  the type of the throwing expected exception attempt definition object
      * @param <$S>  the type of the statements definition interface
      * @param <$T>  the type of the RDBMS types' accessor interface
-     * @param <$R>  the type of the route definition result
+     * @param <$E>  the type of the expected route definition result
      * @param <H>   the type of possible unexpected exception that might be thrown
      * @param <E>   the type of possible expected exception that might be thrown
      */
-    interface Catching<$AE extends $A, $A extends org.moodminds.route.Flow.Expecting<$A, $R, E>, $S, $T extends Types, $R extends Routing<?>, H extends Exception, E extends Exception>
-            extends org.moodminds.route.Flow.Catching<$A, $R, H, E> {
+    interface Catching<$AE extends $A, $A extends org.moodminds.route.Flow.Expecting<$A, $E, ?, E>, $S, $T extends Types, $E extends Routing<?>, H extends Exception, E extends Exception>
+            extends org.moodminds.route.Flow.Catching<$A, $E, H, E> {
 
         /**
          * {@inheritDoc}
@@ -11084,17 +11085,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Block<? extends Routing<? extends $R>> route);
-
-        /**
-         * {@inheritDoc}
-         *
-         * @param type {@inheritDoc}
-         * @param route {@inheritDoc}
-         * @return {@inheritDoc}
-         */
-        @Override
-        $AE caught(Class<H> type, Block1<? super H, ? extends Routing<? extends $R>> route);
+        $AE caught(Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11104,7 +11095,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Class<H> type, org.moodminds.route.Route1Level1<? super H, ? extends E, ? extends $R> route);
+        $AE caught(Class<H> type, Block1<? super H, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11114,7 +11105,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Class<H> type, org.moodminds.route.Route1Level2<? super H, ? extends RuntimeException, ? extends $R> route);
+        $AE caught(Class<H> type, org.moodminds.route.Route1Level1<? super H, ? extends E, ? extends $E> route);
 
         /**
          * {@inheritDoc}
@@ -11124,7 +11115,17 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $AE caught(Class<H> type, org.moodminds.route.Route1Level3<? super H, E, ? extends $R> route);
+        $AE caught(Class<H> type, org.moodminds.route.Route1Level2<? super H, ? extends RuntimeException, ? extends $E> route);
+
+        /**
+         * {@inheritDoc}
+         *
+         * @param type {@inheritDoc}
+         * @param route {@inheritDoc}
+         * @return {@inheritDoc}
+         */
+        @Override
+        $AE caught(Class<H> type, org.moodminds.route.Route1Level3<? super H, E, ? extends $E> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11134,7 +11135,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $AE caught(Class<H> type, Route1Level1<? super H, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Route1Level1<? super H, ? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11144,7 +11145,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $AE caught(Class<H> type, Route1Level2<? super H, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Route1Level2<? super H, ? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Define the specified handling route for exceptions of the specified type.
@@ -11154,7 +11155,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return attempt definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $AE caught(Class<H> type, Route1Level3<? super H, E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $AE caught(Class<H> type, Route1Level3<? super H, E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
     }
 
     /**
@@ -11188,15 +11189,16 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
     /**
      * Route conditional definition object.
      *
+     * @param <$CE> the type of the route conditional definition object extension
      * @param <$C>  the type of the route conditional definition object
-     * @param <$EC> the type of the route conditional definition object extension
      * @param <$S>  the type of the statements definition interface
      * @param <$T>  the type of the RDBMS types' accessor interface
-     * @param <$E>  the type of the conditional route definition result
-     * @param <$R>  the type of the route definition result
+     * @param <$E>  the type of the expected route definition result
+     * @param <$RE>  the type of the route definition result extension
+     * @param <$R>  the type of the conditional route definition result
      * @param <E>   the type of possible exception
      */
-    interface Choosing<$EC extends $C, $C extends org.moodminds.route.Flow.Choosing<$C, $E, $R, E>, $S, $T extends Types, $EE extends $E, $E extends Routing<?>, $R extends Routing<?>, E extends Exception>
+    interface Choosing<$CE extends $C, $C extends org.moodminds.route.Flow.Choosing<$C, $E, $R, E>, $S, $T extends Types, $E extends Routing<?>, $RE extends $R, $R extends Routing<?>, E extends Exception>
             extends org.moodminds.route.Flow.Choosing<$C, $E, $R, E> {
 
         /**
@@ -11206,7 +11208,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EE option(Block<? extends Routing<? extends $R>> route);
+        $RE option(Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11215,7 +11217,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EE option(org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        $RE option(org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11224,7 +11226,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EE option(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        $RE option(org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11233,7 +11235,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EE option(org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        $RE option(org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Complete conditional definition specifying the route to execute if no previous cases' conditions match.
@@ -11242,7 +11244,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return the conditional route definition result
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EE option(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $RE option(RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Complete conditional definition specifying the route to execute if no previous cases' conditions match.
@@ -11251,7 +11253,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return the conditional route definition result
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EE option(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $RE option(RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Complete conditional definition specifying the route to execute if no previous cases' conditions match.
@@ -11260,7 +11262,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return the conditional route definition result
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EE option(RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $RE option(RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11270,7 +11272,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(Value<Boolean> predicate, Block<? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11280,7 +11282,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(Value<Boolean> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11290,7 +11292,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(Value<Boolean> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11300,7 +11302,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(Value<Boolean> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified boolean result flag match.
@@ -11310,7 +11312,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EC option(Value<Boolean> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified boolean result flag match.
@@ -11320,7 +11322,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EC option(Value<Boolean> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified boolean result flag match.
@@ -11330,7 +11332,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EC option(Value<Boolean> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $CE option(Value<Boolean> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11340,7 +11342,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(TestableThrowing1<? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11350,7 +11352,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(TestableThrowing1<? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11360,7 +11362,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(TestableThrowing1<? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11370,7 +11372,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        $EC option(TestableThrowing1<? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified {@link Testable1Throwing1} match.
@@ -11380,7 +11382,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EC option(TestableThrowing1<? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified {@link Testable1Throwing1} match.
@@ -11390,7 +11392,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EC option(TestableThrowing1<? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified {@link Testable1Throwing1} match.
@@ -11400,7 +11402,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        $EC option(TestableThrowing1<? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        $CE option(TestableThrowing1<? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11412,7 +11414,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11424,7 +11426,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11436,7 +11438,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11448,7 +11450,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11461,7 +11463,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11474,7 +11476,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11487,7 +11489,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I> $EC option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I> $CE option(Value<? extends I> value, Testable1Throwing1<? super I, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11501,7 +11503,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11515,7 +11517,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11529,7 +11531,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11543,7 +11545,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11558,7 +11560,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11573,7 +11575,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11588,7 +11590,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Testable2Throwing1<? super I1, ? super I2, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
 
         /**
@@ -11605,7 +11607,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11621,7 +11623,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11637,7 +11639,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11653,7 +11655,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11670,7 +11672,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11687,7 +11689,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11704,7 +11706,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Testable3Throwing1<? super I1, ? super I2, ? super I3, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11722,7 +11724,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11740,7 +11742,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11758,7 +11760,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11776,7 +11778,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11795,7 +11797,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11814,7 +11816,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11833,7 +11835,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Testable4Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11853,7 +11855,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11873,7 +11875,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11893,7 +11895,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11913,7 +11915,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11934,7 +11936,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11955,7 +11957,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -11976,7 +11978,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Testable5Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -11998,7 +12000,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12020,7 +12022,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12042,7 +12044,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12064,7 +12066,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12087,7 +12089,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12110,7 +12112,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12133,7 +12135,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Testable6Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12157,7 +12159,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12181,7 +12183,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12205,7 +12207,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12229,7 +12231,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12254,7 +12256,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12279,7 +12281,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12304,7 +12306,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6, I7> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Testable7Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12330,7 +12332,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, Block<? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, Block<? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12356,7 +12358,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, org.moodminds.route.RouteLevel1<? extends E, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12382,7 +12384,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, org.moodminds.route.RouteLevel2<? extends RuntimeException, ? extends Routing<? extends $E>> route);
 
         /**
          * {@inheritDoc}
@@ -12408,7 +12410,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return {@inheritDoc}
          */
         @Override
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, org.moodminds.route.RouteLevel3<E, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12435,7 +12437,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, RouteLevel1<? extends E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12462,7 +12464,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, RouteLevel2<? extends RuntimeException, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
 
         /**
          * Add the specified route conditional execution depending on the specified
@@ -12489,7 +12491,7 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
          * @return conditional route definition object
          * @throws RuntimeException an exception in case of route definition error
          */
-        <I1, I2, I3, I4, I5, I6, I7, I8> $EC option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $R>> route);
+        <I1, I2, I3, I4, I5, I6, I7, I8> $CE option(Value<? extends I1> value1, Value<? extends I2> value2, Value<? extends I3> value3, Value<? extends I4> value4, Value<? extends I5> value5, Value<? extends I6> value6, Value<? extends I7> value7, Value<? extends I8> value8, Testable8Throwing1<? super I1, ? super I2, ? super I3, ? super I4, ? super I5, ? super I6, ? super I7, ? super I8, ? extends E> predicate, RouteLevel3<E, ? super $S, ? super $T, ? extends Routing<? extends $E>> route);
     }
 
     /**
@@ -12501,8 +12503,8 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible exception
      */
     interface ChoosingAction<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E extends Exception>
-                extends org.moodminds.route.Flow.ChoosingAction<$F, E>, Choosing<ChoosingAction<$F, $S, $T, E>,
-            org.moodminds.route.Flow.ChoosingAction<$F, E>, $S, $T, $F, $F, Flowing<?>, E>, Flow<$F, $S, $T, E> {
+            extends org.moodminds.route.Flow.ChoosingAction<$F, E>,
+                    Choosing<ChoosingAction<$F, $S, $T, E>, org.moodminds.route.Flow.ChoosingAction<$F, E>, $S, $T, Flowing<?>, $F, $F, E>, Flow<$F, $S, $T, E> {
     }
 
     /**
@@ -12514,8 +12516,8 @@ public interface Flow<$F extends Flow<?, $S, $T, E>, $S, $T extends Types, E ext
      * @param <E>  the type of possible exception that might be thrown
      */
     interface ChoosingStream<$S, $T extends Types, V, E extends Exception>
-                extends org.moodminds.route.Flow.ChoosingStream<V, E>, Choosing<ChoosingStream<$S, $T, V, E>,
-            org.moodminds.route.Flow.ChoosingStream<V, E>, $S, $T, Emitting<V>, Emitting<V>, Emitting<? extends V>, E> {
+            extends org.moodminds.route.Flow.ChoosingStream<V, E>,
+                    Choosing<ChoosingStream<$S, $T, V, E>, org.moodminds.route.Flow.ChoosingStream<V, E>, $S, $T, Emitting<? extends V>, Emitting<V>, Emitting<V>, E> {
     }
 
     /**
