@@ -39,7 +39,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route<? super Flow<?, Statings, Types, E>, ? extends Emitting<? extends V>> route);
+    <V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route<? super Flow<?, Statings, Types, E>, ? extends Emitting<? extends V>> route);
 
     /**
      * Materialize the specified action route and return the {@link Emittable} execution object.
@@ -58,7 +58,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route<? super Flow<?, Statings, Types, E>, ? extends Flowing<?>> route);
+    <E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route<? super Flow<?, Statings, Types, E>, ? extends Flowing<?>> route);
 
     /**
      * Materialize the specified streaming route with the given value and return the {@link Emittable} execution object.
@@ -83,7 +83,7 @@ public interface Routes {
      * @param <E>   the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route1<? super Flow<?, Statings, Types, E>, I, ? extends Emitting<? extends V>> route, I value);
+    <I, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route1<? super Flow<?, Statings, Types, E>, I, ? extends Emitting<? extends V>> route, I value);
 
     /**
      * Materialize the specified action route with the given value and return the {@link Emittable} execution object.
@@ -106,7 +106,7 @@ public interface Routes {
      * @param <E>   the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route1<? super Flow<?, Statings, Types, E>, I, ? extends Flowing<?>> route, I value);
+    <I, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route1<? super Flow<?, Statings, Types, E>, I, ? extends Flowing<?>> route, I value);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -135,7 +135,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route2<? super Flow<?, Statings, Types, E>, I1, I2, ? extends Emitting<? extends V>> route, I1 value1, I2 value2);
+    <I1, I2, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route2<? super Flow<?, Statings, Types, E>, I1, I2, ? extends Emitting<? extends V>> route, I1 value1, I2 value2);
 
     /**
      * Materialize the specified action route with the given value and return the {@link Emittable} execution object.
@@ -162,7 +162,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route2<? super Flow<?, Statings, Types, E>, I1, I2, ? extends Flowing<?>> route, I1 value1, I2 value2);
+    <I1, I2, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route2<? super Flow<?, Statings, Types, E>, I1, I2, ? extends Flowing<?>> route, I1 value1, I2 value2);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -195,7 +195,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route3<? super Flow<?, Statings, Types, E>, I1, I2, I3, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3);
+    <I1, I2, I3, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route3<? super Flow<?, Statings, Types, E>, I1, I2, I3, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3);
 
     /**
      * Materialize the specified action route with the given values and return the {@link Emittable} execution object.
@@ -226,7 +226,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route3<? super Flow<?, Statings, Types, E>, I1, I2, I3, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3);
+    <I1, I2, I3, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route3<? super Flow<?, Statings, Types, E>, I1, I2, I3, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -263,7 +263,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route4<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4);
+    <I1, I2, I3, I4, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route4<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4);
 
     /**
      * Materialize the specified action route with the given values and return the {@link Emittable} execution object.
@@ -298,7 +298,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route4<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4);
+    <I1, I2, I3, I4, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route4<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -339,7 +339,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route5<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5);
+    <I1, I2, I3, I4, I5, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route5<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5);
 
     /**
      * Materialize the specified action route with the given values and return the {@link Emittable} execution object.
@@ -378,7 +378,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route5<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5);
+    <I1, I2, I3, I4, I5, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route5<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -423,7 +423,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, I6, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route6<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6);
+    <I1, I2, I3, I4, I5, I6, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route6<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6);
 
     /**
      * Materialize the specified action route with the given values and return the {@link Emittable} execution object.
@@ -466,7 +466,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, I6, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route6<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6);
+    <I1, I2, I3, I4, I5, I6, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route6<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -515,7 +515,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, I6, I7, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route7<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7);
+    <I1, I2, I3, I4, I5, I6, I7, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route7<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7);
 
     /**
      * Materialize the specified action route with the given values and return the {@link Emittable} execution object.
@@ -562,7 +562,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, I6, I7, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route7<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7);
+    <I1, I2, I3, I4, I5, I6, I7, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route7<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7);
 
     /**
      * Materialize the specified streaming route with the given values and return the {@link Emittable} execution object.
@@ -615,7 +615,7 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, I6, I7, I8, V, E extends Exception> Emittable<V, E> stream(Class<? extends E> thrown, Route8<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, I8, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7, I8 value8);
+    <I1, I2, I3, I4, I5, I6, I7, I8, V, E extends Exception> Emittable<V, E> stream(Class<E> thrown, Route8<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, I8, ? extends Emitting<? extends V>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7, I8 value8);
 
     /**
      * Materialize the specified action route with the given values and return the {@link Emittable} execution object.
@@ -666,5 +666,5 @@ public interface Routes {
      * @param <E>    the type of possible exception that might be thrown
      * @return the {@link Emittable} execution object
      */
-    <I1, I2, I3, I4, I5, I6, I7, I8, E extends Exception> Emittable<Void, E> action(Class<? extends E> thrown, Route8<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, I8, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7, I8 value8);
+    <I1, I2, I3, I4, I5, I6, I7, I8, E extends Exception> Emittable<Void, E> action(Class<E> thrown, Route8<? super Flow<?, Statings, Types, E>, I1, I2, I3, I4, I5, I6, I7, I8, ? extends Flowing<?>> route, I1 value1, I2 value2, I3 value3, I4 value4, I5 value5, I6 value6, I7 value7, I8 value8);
 }
