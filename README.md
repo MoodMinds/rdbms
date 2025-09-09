@@ -52,7 +52,7 @@ It can be executed with a specific SPI implementation, whether it's JDBC or [R2D
 
 ```java
 import org.moodminds.emission.Emittable;
-import org.moodminds.rdbms.clause.Script;
+import org.moodminds.rdbms.clause.script.Script;
 import org.moodminds.rdbms.data.Tuple1;
 import org.moodminds.rdbms.lang.Create;
 import org.moodminds.rdbms.lang.Query1;
@@ -108,7 +108,7 @@ class Sample {
                     .supply(phone, Tuple1::get1st));
 
     static final Action1<String, RuntimeException> CALL_PERSON = ($, name) -> $
-            .invoke(($$, t) -> $$.call("PERSON(:>name, :<code)")
+            .invoke(($$, t) -> $$.call("CALL PERSON(:>name, :<code)")
                     .param(String.class).param(t.$(VARCHAR)))
                 .input("name", name)
                 .output("code", code -> $
